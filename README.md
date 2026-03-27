@@ -1,5 +1,7 @@
 # TP CI/CD — Notes App API
 
+Lien vers le docker hub repo : https://hub.docker.com/repository/docker/tristangottschalk/notes-api-tp3/general
+
 Ce dépôt contient une API Node/Express dans `notes-app/api`.
 Les workflows GitHub Actions sont définis à la racine dans `.github/workflows`.
 
