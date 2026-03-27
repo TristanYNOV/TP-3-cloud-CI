@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/notes-api-tp3
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -32,7 +29,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     needs: test
 
@@ -43,18 +40,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push Docker image
+      - name: Build Docker image only
         uses: docker/build-push-action@v6
         with:
           context: ./notes-app/api
           file: ./notes-app/api/Dockerfile
-          push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          push: false
+          tags: notes-api-tp3:ci-check
