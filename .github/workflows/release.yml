@@ -6,7 +6,7 @@ on:
       - "v*"
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/notes-app
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/notes-api-tp3
 
 jobs:
   docker-release:
